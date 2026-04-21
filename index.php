@@ -2,7 +2,7 @@
 <!--=========================
         BANNER 2 START
     ==========================-->
-<section class="banner_2" style="background-image: url('./assets/images/hero-background.jpg') !important; background-size: cover !important; background-position: center !important;">
+<section class="banner_2" style="background-image: url('./assets/images/hero-background.jpg') !important; background-size: cover !important; background-position: bottom !important;">
     <div class="container">
         <div class="row">
             <!-- <div class="col-xl-2  d-none d-xxl-block">
@@ -45,39 +45,49 @@
             <div class="col-xxl-9 col-lg-8">
                 <div class="banner_content">
                     <div class="row banner_2_slider">
+
+                        <!-- Slider 1 -->
                         <div class="col-xl-12">
                             <div class="banner_slider_2 wow fadeInUp"
                                 style="background: url(assets/images/slider_1.jpg);">
                                 <div class="banner_slider_2_text">
-                                    <h3>New arrivals of 2025</h3>
-                                    <h1>Where Fashion Meets Individuality</h1>
-                                    <a class="common_btn" href="shop_details.php">shop now <i
-                                            class="fas fa-long-arrow-right"></i></a>
+                                    <h3>Fresh Grocery Deals 2026</h3>
+                                    <h1>Daily Essentials Delivered at Best Prices</h1>
+                                    <a class="common_btn" href="shop_details.php">
+                                        Shop Groceries <i class="fas fa-long-arrow-right"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Slider 2 -->
                         <div class="col-xl-12">
                             <div class="banner_slider_2 wow fadeInUp"
                                 style="background: url(assets/images/slider_2.jpg);">
                                 <div class="banner_slider_2_text">
-                                    <h3>Trending of this month</h3>
-                                    <h1>make your fashion look more changing</h1>
-                                    <a class="common_btn" href="shop_details.php">shop now <i
-                                            class="fas fa-long-arrow-right"></i></a>
+                                    <h3>Top Selling FMCG Products</h3>
+                                    <h1>Save More on Your Everyday Needs</h1>
+                                    <a class="common_btn" href="shop_details.php">
+                                        Explore Products <i class="fas fa-long-arrow-right"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Slider 3 -->
                         <div class="col-xl-12">
                             <div class="banner_slider_2 wow fadeInUp"
                                 style="background: url(assets/images/slider_3.jpg);">
                                 <div class="banner_slider_2_text">
-                                    <h3>Best selling of 2025</h3>
-                                    <h1>Discover ypur Best fitting Clothes</h1>
-                                    <a class="common_btn" href="shop_details.php">shop now <i
-                                            class="fas fa-long-arrow-right"></i></a>
+                                    <h3>Best Deals on Household Items</h3>
+                                    <h1>Quality Products for Your Daily Life</h1>
+                                    <a class="common_btn" href="shop_details.php">
+                                        Shop Now <i class="fas fa-long-arrow-right"></i>
+                                    </a>
                                 </div>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
@@ -87,10 +97,11 @@
                         <div class="banner_2_add wow fadeInUp"
                             style="background: url(assets/images/banner_3_add_bg_1.jpg);">
                             <div class="text">
-                                <h4>Summer Offer</h4>
-                                <h2>Make Your Fashion Story Unique Every Day</h2>
-                                <a class="common_btn" href="shop_details.php">shop now <i
-                                        class="fas fa-long-arrow-right"></i></a>
+                                <h4>Summer Savings Offer</h4>
+                                <h2>Stock Up on Groceries & Daily Essentials</h2>
+                                <a class="common_btn" href="shop_details.php">
+                                    Shop Essentials <i class="fas fa-long-arrow-right"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -235,8 +246,8 @@
             </div>
         </div>
         <?php
-            $user_id = current_user_id() ?? 0;
-            $currency = get_user_currency($user_id);
+        $user_id = current_user_id() ?? 0;
+        $currency = get_user_currency($user_id);
         ?>
         <div class="row wow fadeInUp">
             <div class="col-12">
@@ -269,7 +280,7 @@
                                         </div>
                                         <div class="product_text">
                                             <a class="title" href="shop_details.php?id=<?= encrypt_id($sub_category_product['id']) ?>"><?php echo htmlspecialchars($sub_category_product['name']); ?></a> <span style="font-size:11px; background:#198754; color:#ffffff; padding:2px 6px; border-radius:4px;">GST Inc.</span>
-                                            <p class="price"><?php echo pricing_format($sub_category_product['base_retail_price'], $currency); ?> <del><?php echo pricing_format($sub_category_product['mrp'], $currency); ?></del></p>   
+                                            <p class="price"><?php echo pricing_format($sub_category_product['base_retail_price'], $currency); ?> <del><?php echo pricing_format($sub_category_product['mrp'], $currency); ?></del></p>
                                             <?php
                                             $reviews = get_product_reviews($sub_category_product['id']);
                                             $rating = get_average_product_rating($sub_category_product['id']);
@@ -306,15 +317,21 @@
                                                 $extraCount = $totalVariants > 2 ? $totalVariants - 2 : 0;
                                                 ?>
 
-                                                <?php #foreach ($visible as $variant): ?>
+                                                <?php #foreach ($visible as $variant): 
+                                                ?>
 
                                                     <li class="product_variants_item">
-                                                        <a href="shop.php?slug=<?php #urlencode($sub_category_product['slug']) ?>"
-                                                            title="Size: <?php #htmlspecialchars($variant['size']) ?> | Price: ₹<?php #htmlspecialchars($variant['retail_price']) ?>">
+                                                        <a href="shop.php?slug=<?php #urlencode($sub_category_product['slug']) 
+                                                                                ?>"
+                                                            title="Size: <?php #htmlspecialchars($variant['size']) 
+                                                                            ?> | Price: ₹<?php #htmlspecialchars($variant['retail_price']) 
+                                                                                            ?>">
 
                                                             <img
-                                                                src="<?php #htmlspecialchars($variant['image'] ?? 'assets/images/product_1.png') ?>"
-                                                                alt="<?php #htmlspecialchars($variant['size']) ?>"
+                                                                src="<?php #htmlspecialchars($variant['image'] ?? 'assets/images/product_1.png') 
+                                                                        ?>"
+                                                                alt="<?php #htmlspecialchars($variant['size']) 
+                                                                        ?>"
                                                                 loading="lazy"
                                                                 width="30"
                                                                 height="30">
@@ -322,18 +339,23 @@
                                                         </a>
                                                     </li>
 
-                                                <?php #endforeach; ?>
+                                                <?php #endforeach; 
+                                                ?>
 
 
-                                                <?php #if ($extraCount > 0): ?>
+                                                <?php #if ($extraCount > 0): 
+                                                ?>
 
                                                     <li class="variant_more">
-                                                        <a href="shop.php?slug=<?php #urlencode($sub_category_product['slug']) ?>">
-                                                            +<?php #$extraCount ?>
+                                                        <a href="shop.php?slug=<?php #urlencode($sub_category_product['slug']) 
+                                                                                ?>">
+                                                            +<?php #$extraCount 
+                                                                ?>
                                                         </a>
                                                     </li>
 
-                                                <?php #endif; ?>
+                                                <?php #endif; 
+                                                ?>
 
                                             </ul> -->
                                         </div>
@@ -379,28 +401,39 @@
         <div class="row mt_15">
             <div class="col-xl-7">
                 <div class="row">
-                    <?php #if (!empty($best_selling_products)) : ?>
-                        <?php #foreach ($best_selling_products as $product) : ?>
+                    <?php #if (!empty($best_selling_products)) : 
+                    ?>
+                        <?php #foreach ($best_selling_products as $product) : 
+                        ?>
                             <div class="col-xl-4 col-sm-6 col-md-4 wow fadeInUp">
                                 <div class="best_selling_product_item">
-                                    <img src="<?php #get_product_image($product, 'main', 24) ?>" alt="best sell"
+                                    <img src="<?php #get_product_image($product, 'main', 24) 
+                                                ?>" alt="best sell"
                                         class="img-fluid w-100">
                                     <div class="text">
-                                        <a class="title" href="shop_details.php?id=<?php #encrypt_id($product['id']) ?>"><?php #echo htmlspecialchars($product['name']); ?></a>
-                                        <p class="price">₹<?php #echo htmlspecialchars($product['base_retail_price']); ?> <del>₹<?php #echo htmlspecialchars($product['mrp']); ?></del></p>
-                                        <a class="buy_btn" href="shop_details.php?id=<?php #encrypt_id($product['id']) ?>">buy now <i
+                                        <a class="title" href="shop_details.php?id=<?php #encrypt_id($product['id']) 
+                                                                                    ?>"><?php #echo htmlspecialchars($product['name']); 
+                                                                                        ?></a>
+                                        <p class="price">₹<?php #echo htmlspecialchars($product['base_retail_price']); 
+                                                            ?> <del>₹<?php #echo htmlspecialchars($product['mrp']); 
+                                                                        ?></del></p>
+                                        <a class="buy_btn" href="shop_details.php?id=<?php #encrypt_id($product['id']) 
+                                                                                        ?>">buy now <i
                                                 class="far fa-arrow-up"></i></a>
                                     </div>
                                 </div>
                             </div>
-                        <?php #endforeach; ?>
-                    <?php #else : ?>
+                        <?php #endforeach; 
+                        ?>
+                    <?php #else : 
+                    ?>
                         <div class="col-12">
                             <div class="text-center">
                                 <h3>No products found</h3>
                             </div>
                         </div>
-                    <?php #endif; ?>
+                    <?php #endif; 
+                    ?>
                 </div>
             </div>
             <div class="col-xl-5 wow fadeInRight">
@@ -561,7 +594,7 @@
                                             <ul class="btn_list">
                                                 <li>
                                                     <a href="wishlist.php?slug=<?= urlencode($product['slug']) ?>">
-                                                        <img src="assets/images/love_icon_white.svg"  data-id="<?php echo $product['id']; ?>" class="img-fluid add-to-wishlist">
+                                                        <img src="assets/images/love_icon_white.svg" data-id="<?php echo $product['id']; ?>" class="img-fluid add-to-wishlist">
                                                     </a>
                                                 </li>
                                                 <li>
@@ -579,7 +612,7 @@
                                             <span style="font-size:11px; background:#198754; color:#ffffff; padding:2px 6px; border-radius:4px;">GST Inc.</span>
                                             <p class="price">
                                                 <?= pricing_format($product['base_retail_price'], $currency) ?>
-                                                 <del><?= pricing_format($product['mrp'], $currency) ?></del>
+                                                <del><?= pricing_format($product['mrp'], $currency) ?></del>
                                             </p>
 
                                             <?php

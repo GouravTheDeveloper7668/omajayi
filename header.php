@@ -34,11 +34,12 @@ $footer_sub_categories = get_sub_categories_grouped_by_main(
     'RAND()',
     ''
 );
+$random_sub_categories = get_random_sub_categories(5);
 $currency = get_user_currency($_SESSION['user_id'] ?? 0);
-$trending_sub_categories = get_trending_products_random($limit = 15 , $currency);
+$trending_sub_categories = get_trending_products_random($limit = 15, $currency);
 $best_selling_products = get_best_selling_products(3);
-$new_arrivals = get_new_arrival_products(5 , $currency);
-$favorite_products = get_recommended_products(15 , null, $currency);
+$new_arrivals = get_new_arrival_products(5, $currency);
+$favorite_products = get_recommended_products(15, null, $currency);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -139,7 +140,7 @@ $favorite_products = get_recommended_products(15 , null, $currency);
                 <div class="col-lg-2">
                     <div class="header_logo_area">
                         <a href="/" class="header_logo">
-                            <img src="assets/images/logo_2.png" alt="Adidev Manufacturing Sales And Services Private Limited" class="img-fluid w-100">
+                            <img src="assets/images/logo_2.png" alt="Adidev Manufacturing Sales And Services Private Limited" class="logo-img">
                         </a>
                         <div class="mobile_menu_icon d-block d-lg-none" data-bs-toggle="offcanvas"
                             data-bs-target="#offcanvasWithBothOptions" aria-controls="offcanvasWithBothOptions">
@@ -207,6 +208,10 @@ $favorite_products = get_recommended_products(15 , null, $currency);
                         </div> -->
                         <ul class="menu_item">
                             <li><a href="/"> Home</a></li>
+                            <?php foreach ($random_sub_categories as $subCat) : ?>
+                                <li><a href="shop.php?sub=<?php echo urlencode($subCat['slug']); ?>"><?php echo htmlspecialchars($subCat['name']); ?></a></li>
+                            <?php endforeach; ?>
+
                             <!-- <li>
                                 <a href="#">All Products <i class="fas fa-chevron-down"></i></a>
                                 <ul class="menu_droapdown">
@@ -222,24 +227,6 @@ $favorite_products = get_recommended_products(15 , null, $currency);
                                     <li><a href="vendor_registration.php">Become a Vendor</a></li>
                                 </ul>
                             </li> -->
-                            <?php foreach ($header_main_categories as $mainCat) : ?>
-                                <li>
-                                    <a href="shop.php?category=<?php echo urlencode($mainCat['slug']); ?>">
-                                        <span>
-                                            <?php
-                                            $iconPath = !empty($mainCat['icon'])
-                                                ? htmlspecialchars($mainCat['icon'])
-                                                : 'assets/images/category_list_icon_1.png';
-                                            ?>
-                                            <img src="<?php echo $iconPath; ?>" alt="category" class="img-fluid" style="max-width: 25px !important;">
-                                        </span><?php echo htmlspecialchars($mainCat['name']); ?> <i class="fas fa-chevron-down"></i></a>
-                                    <ul class="menu_droapdown">
-                                        <?php foreach ($header_sub_categories[$mainCat['id']] as $subCat) : ?>
-                                            <li><a href="shop.php?sub=<?php echo urlencode($subCat['slug']); ?>"><?php echo htmlspecialchars($subCat['name']); ?></a></li>
-                                        <?php endforeach; ?>
-                                    </ul>
-                                </li>
-                            <?php endforeach; ?>
                             <li>
                                 <a href="#">Categories <i class="fas fa-chevron-down"></i></a>
                                 <ul class="menu_droapdown">
@@ -453,14 +440,16 @@ $favorite_products = get_recommended_products(15 , null, $currency);
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"><i
                     class="fal fa-times"></i></button>
             <div class="offcanvas-body">
-                <ul class="mobile_currency">
+                <!-- <ul class="mobile_currency">
                     <li>
                         <select class="select_js">
-                            <option value="INR" <?php echo $userCurrency === 'INR' ? 'selected' : ''; ?>>INR</option>
-                            <option value="USD" <?php echo $userCurrency === 'USD' ? 'selected' : ''; ?>>USD</option>
+                            <option value="INR" <?php #echo $userCurrency === 'INR' ? 'selected' : ''; 
+                                                ?>>INR</option>
+                            <option value="USD" <?php #echo $userCurrency === 'USD' ? 'selected' : ''; 
+                                                ?>>USD</option>
                         </select>
                     </li>
-                </ul>
+                </ul> -->
                 <ul class="mobile_menu_header d-flex flex-wrap">
                     <!-- <li>
                         <a href="compare.php">
@@ -481,48 +470,81 @@ $favorite_products = get_recommended_products(15 , null, $currency);
                         </a>
                     </li>
                     <li>
-                        <a href="dashboard.php">
-                            <b><img src="assets/images/user_icon_black.svg" alt="cart" class="img-fluid"></b>
-                        </a>
+                        <?php if (is_logged_in()) : ?>
+                            <a href="logout.php">
+                                &nbsp;&nbsp;
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" 
+                                    xmlns="http://www.w3.org/2000/svg">
+                                
+                                <!-- Exit frame -->
+                                <path d="M9 4H5C4.45 4 4 4.45 4 5V19C4 19.55 4.45 20 5 20H9" 
+                                        stroke="currentColor" 
+                                        stroke-width="2" 
+                                        stroke-linecap="round"/>
+
+                                <!-- Arrow pointing out -->
+                                <path d="M16 17L21 12L16 7" 
+                                        stroke="currentColor" 
+                                        stroke-width="2" 
+                                        stroke-linecap="round" 
+                                        stroke-linejoin="round"/>
+
+                                <!-- Arrow line -->
+                                <path d="M21 12H9" 
+                                        stroke="currentColor" 
+                                        stroke-width="2" 
+                                        stroke-linecap="round"/>
+                                </svg>
+                                logout
+                            </a>
+                        <?php else : ?>
+                            <a href="sign_in.php">
+                                &nbsp;&nbsp;
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <!-- Door -->
+                                <path d="M3 3H14V21H3V3Z" stroke="#2c2c2c" stroke-width="2" fill="none"/>
+                                
+                                <!-- Arrow (sign in) -->
+                                <path d="M10 12H21M21 12L18 9M21 12L18 15" stroke="#494949" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                                Sign In
+                            </a>
+                        <?php endif; ?>
                     </li>
                 </ul>
+                <br>
 
-                <form class="mobile_menu_search">
+                <!-- <form class="mobile_menu_search">
                     <input type="text" placeholder="Search">
                     <button type="submit"><i class="far fa-search"></i></button>
-                </form>
+                </form> -->
 
                 <div class="mobile_menu_item_area">
                     <ul class="nav nav-pills" id="pills-tab" role="tablist">
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
-                                data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
-                                aria-selected="true">Categories</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill"
+                            <button class="nav-link active" id="pills-profile-tab" data-bs-toggle="pill"
                                 data-bs-target="#pills-profile" type="button" role="tab" aria-controls="pills-profile"
                                 aria-selected="false">menu</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="pills-home-tab" data-bs-toggle="pill"
+                                data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
+                                aria-selected="true">Categories</button>
                         </li>
                     </ul>
 
                     <div class="tab-content" id="pills-tabContent">
-                        <div class="tab-pane fade show active" id="pills-home" role="tabpanel"
+                        <div class="tab-pane fade show" id="pills-home" role="tabpanel"
                             aria-labelledby="pills-home-tab" tabindex="0">
                             <ul class="main_mobile_menu">
-                                <?php foreach ($header_main_categories as $mainCat) : ?>
-                                    <li class="mobile_dropdown">
-                                        <a href="shop.php?category=<?php echo urlencode($mainCat['slug']); ?>"><?php echo htmlspecialchars($mainCat['name']); ?></a>
-                                        <ul class="inner_menu">
-                                            <?php foreach ($header_sub_categories[$mainCat['id']] as $subCat) : ?>
-                                                <li><a href="shop.php?sub=<?php echo urlencode($subCat['slug']); ?>"><?php echo htmlspecialchars($subCat['name']); ?></a></li>
-                                            <?php endforeach; ?>
-                                        </ul>
-                                    </li>
+                                <?php foreach ($header_sub_categories as $mainId => $subCats) : ?>
+                                    <?php foreach ($subCats as $subCat) : ?>
+                                        <li><a href="shop.php?sub=<?php echo urlencode($subCat['slug']); ?>"><?php echo htmlspecialchars($subCat['name']); ?></a></li>
+                                    <?php endforeach; ?>
                                 <?php endforeach; ?>
                             </ul>
                         </div>
-                        <div class="tab-pane fade" id="pills-profile" role="tabpanel"
+                        <div class="tab-pane fade show active" id="pills-profile" role="tabpanel"
                             aria-labelledby="pills-profile-tab" tabindex="0">
                             <ul class="main_mobile_menu">
                                 <li><a href="/">Home</a></li>

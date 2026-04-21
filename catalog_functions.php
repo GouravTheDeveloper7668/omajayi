@@ -60,6 +60,36 @@ function get_main_categories_for_menu(): array
 }
 
 /**
+ * Get random active sub categories (no grouping).
+ *
+ * @return array<int,array<string,mixed>>
+ */
+function get_random_sub_categories(int $limit = 7): array
+{
+    $sql = "
+        SELECT id, main_category_id, name, slug, icon, image, banner_image
+        FROM sub_categories
+        WHERE is_active = 1
+        AND show_in_menu = 1
+        ORDER BY RAND()
+        LIMIT ?
+    ";
+
+    $stmt = db_execute($sql, 'i', [$limit]);
+
+    $result = $stmt->get_result();
+    $data   = [];
+
+    while ($row = $result->fetch_assoc()) {
+        $data[] = $row;
+    }
+
+    $stmt->close();
+
+    return $data;
+}
+
+/**
  * Get active sub categories grouped by their main category id.
  *
  * @param int[] $mainCategoryIds

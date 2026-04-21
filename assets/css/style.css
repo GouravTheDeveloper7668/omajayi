@@ -131,11 +131,12 @@ button {
 }
 
 :root {
-  --themeColorOne: #164580;
-  --themeColorTwo: #f36c1e;
+  --themeColorOne: #f6a83b;
+  --themeColorTwo: #4563f7;
   --colorGreen: #05a845;
   --colorOlive: #ab9774;
   --colorYellow: #ffd43a;
+  --colorBlue: #3498db;
   --colorRed: #db4437;
   --paraColor: #7d7b7b;
   --colorBlack: #333333;
@@ -624,7 +625,10 @@ header {
   width: 100%;
   height: 90px;
   line-height: 90px;
-  background: var(--colorYellow);
+    /* background: -webkit-linear-gradient(110deg, #fdcd3b 60%, #ffed4b 60%);  */
+  background: -o-linear-gradient(110deg, #617bfc 60%, #ffed4b 60%);
+  background: -moz-linear-gradient(110deg, #617bfc 60%, #ffed4b 60%);
+  background: linear-gradient(110deg, #617bfc 60%, #ffed4b 60%);
   position: relative;
   transition: all linear 0.3s;
   -webkit-transition: all linear 0.3s;
@@ -642,7 +646,7 @@ header .header_logo_area {
 }
 
 header .header_logo {
-  width: 200px;
+  width: 130px;
 }
 
 header form {
@@ -2228,8 +2232,9 @@ header .header_support h3 a:hover {
 
 .product_item .price {
   color: var(--themeColorTwo);
-  font-weight: 500;
+  font-weight: 600;
   font-size: 16px;
+  letter-spacing: 0.5px;
 }
 
 .product_item .price del {
@@ -3015,7 +3020,7 @@ footer {
 
 .footer_logo_area p,
 .footer_2_logo_area p {
-  color: rgb(183 183 183);
+  color: rgb(247, 246, 246);
   font-size: 15px;
   font-weight: 400;
   margin-top: 20px;
@@ -3024,7 +3029,7 @@ footer {
 
 .footer_logo_area span {
   display: block;
-  color: rgb(183 183 183);
+  color: rgb(247, 246, 246);
   font-size: 15px;
   position: relative;
   padding-left: 30px;
@@ -3040,7 +3045,7 @@ footer {
 }
 
 .footer_logo_area span a {
-  color: rgb(183 183 183);
+  color: rgb(247, 246, 246);
   font-size: 15px;
   font-weight: 400;
   transition: all linear 0.3s;
@@ -3050,7 +3055,7 @@ footer {
   -o-transition: all linear 0.3s;
 }
 
-.footer_logo_area span a:hover {
+.footer_logo_area span a:hover {  
   color: var(--themeColorTwo);
 }
 
@@ -3063,7 +3068,7 @@ footer {
 }
 
 .footer_link ul li a {
-  color: rgb(183 183 183);
+  color: rgb(245, 244, 244);
   font-size: 15px;
   display: block;
   font-weight: 400;
@@ -3123,7 +3128,7 @@ footer {
 }
 
 .footer_copyright p {
-  color: rgb(183 183 183);
+  color: rgb(247, 246, 246);
   font-size: 15px;
 }
 
@@ -3152,13 +3157,13 @@ footer {
 .footer_copyright .payment li:first-child {
   width: auto;
   height: auto;
-  color: rgb(183 183 183);
+  color: rgb(247, 246, 246);
   font-size: 15px;
   font-weight: 400;
 }
 
 .footer_newsletter p {
-  color: rgb(183 183 183);
+  color: rgb(247, 246, 246);
   font-size: 15px;
   margin-bottom: 20px;
 }
@@ -3519,6 +3524,29 @@ footer {
   -o-border-radius: 14px;
 }
 
+/* Modern Yellow/Blue/White Theme for Index, Shop, and Shop Details Pages */
+
+/* Index Page Banner */
+.banner_2 {
+    background: -webkit-linear-gradient(110deg, #3b5cfd 60%, #ffed4b 60%);
+  background: -o-linear-gradient(110deg, #3b5cfd 60%, #ffed4b 60%);
+  background: -moz-linear-gradient(110deg, #3b5cfd 60%, #ffed4b 60%);
+  background: linear-gradient(110deg, #3b5cfd 60%, #ffed4b 60%);
+  position: relative;
+  overflow: hidden;
+}
+
+.banner_2::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
 .banner_slider_2_text {
   height: 100%;
   display: flex;
@@ -3863,7 +3891,7 @@ footer {
   margin: 20px auto;
   width: 170px;
   height: 170px;
-  background: var(--lightBg2);
+  background: #fcf4ab;
   padding: 30px;
   border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%;
   -webkit-border-radius: 100% 60% 60% 100% / 100% 100% 60% 60%;
@@ -4398,7 +4426,7 @@ footer {
 .footer_2 .footer_2_logo_area ul li span {
   font-size: 16px;
   font-weight: 500;
-  color: rgb(183 183 183);
+  color: rgb(247, 246, 246);
 }
 
 .footer_2 .footer_2_logo_area ul li a {
@@ -4408,7 +4436,7 @@ footer {
   text-align: center;
   color: var(--themeColorTwo);
   font-size: 16px;
-  background: #ffffff47;
+  background: #fffffffb;
   transition: all linear 0.3s;
   -webkit-transition: all linear 0.3s;
   -moz-transition: all linear 0.3s;
@@ -8196,7 +8224,7 @@ footer {
 }
 
 .details_slider_thumb_item {
-  background-image: url("../images/background_image_p_d.png") !important;
+  background-image: url("../images/background_image_p.png") !important;
   background-size: cover !important;
   background-position: center !important;
   overflow: hidden;
@@ -8207,6 +8235,18 @@ footer {
   -moz-border-radius: 16px;
   -ms-border-radius: 16px;
   -o-border-radius: 16px;
+}
+
+.logo-img {
+    height: 68px;
+    width: auto;              /* shape maintain rahe */
+    background-color: #ffffff; 
+    padding: 6px;             /* thoda space for shadow */
+    border-radius: 8px;       /* optional smooth edges */
+    
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15); /* soft shadow */
+    
+    object-fit: contain;      /* image distort na ho */
 }
 
 .shop_details_text {
